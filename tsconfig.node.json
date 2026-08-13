@@ -7,7 +7,8 @@
     "allowSyntheticDefaultImports": true,
     "strict": true,
     "composite": true,
-    "noEmit": false
+    "noEmit": false,
+    "allowJs": true
   },
-  "include": ["vite.config.ts", "postcss.config.js"]
+  "include": ["vite.config.ts", "postcss.config.js", "stylex.config.mjs"]
 }

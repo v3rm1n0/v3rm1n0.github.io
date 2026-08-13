@@ -1,8 +1,5 @@
-import {fileURLToPath} from 'node:url';
-import {dirname} from 'node:path';
 import stylexBabelPlugin from '@stylexjs/babel-plugin';
-
-const rootDir = dirname(fileURLToPath(import.meta.url));
+import {stylexBabelPluginOptions} from './stylex.config.mjs';
 
 export default (ctx) => ({
   plugins: {
@@ -13,21 +10,16 @@ export default (ctx) => ({
       // internal Babel pass has nothing to load by default: it can't parse
       // JSX/TSX syntax, and it never registers @stylexjs/babel-plugin to
       // extract `stylex.create()` calls into CSS. Both must be supplied
-      // explicitly here, mirroring the babel-plugin options in vite.config.ts.
+      // explicitly here. The options object itself comes from
+      // stylex.config.mjs, shared with vite.config.ts, so the two passes
+      // can't drift out of sync (they must generate identical StyleX
+      // class names from the same source).
       babelConfig: {
         babelrc: false,
         configFile: false,
         parserOpts: {plugins: ['jsx', 'typescript']},
         plugins: [
-          [
-            stylexBabelPlugin,
-            {
-              dev: ctx.env !== 'production',
-              runtimeInjection: false,
-              treeshakeCompensation: true,
-              unstable_moduleResolution: {type: 'commonJS', rootDir},
-            },
-          ],
+          [stylexBabelPlugin, stylexBabelPluginOptions(ctx.env !== 'production')],
         ],
       },
     },
