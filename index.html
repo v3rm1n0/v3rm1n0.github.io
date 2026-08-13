@@ -1,0 +1,38 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Niklas</title>
+    <meta name="description" content="Personal site of Niklas." />
+    <script>
+      // Applies the resolved background before React boots, so a dark-mode
+      // visitor never sees a white flash. Kept inline and dependency-free.
+      (function () {
+        try {
+          var stored = localStorage.getItem('portfolio-theme-mode');
+          var mode = stored === 'light' || stored === 'dark' ? stored : null;
+          if (!mode) {
+            mode = window.matchMedia('(prefers-color-scheme: dark)').matches
+              ? 'dark'
+              : 'light';
+          }
+          document.documentElement.style.backgroundColor =
+            mode === 'dark' ? '#0d1017' : '#ffffff';
+          document.documentElement.dataset.bootMode = mode;
+        } catch (e) {}
+      })();
+    </script>
+  </head>
+  <body>
+    <div id="root"></div>
+    <noscript>
+      <p>
+        This is Niklas's personal site. It needs JavaScript to load its content.
+        You can find my work at
+        <a href="https://codeberg.org/v3rm1n">codeberg.org/v3rm1n</a>.
+      </p>
+    </noscript>
+    <script type="module" src="/src/main.tsx"></script>
+  </body>
+</html>
