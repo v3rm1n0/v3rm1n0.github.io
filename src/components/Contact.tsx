@@ -1,14 +1,7 @@
 import * as stylex from '@stylexjs/stylex';
 import {layout} from '../tokens.stylex';
-import type {ContactKind, ContactLink} from '../content/schema';
-
-const GLYPHS: Record<ContactKind, string> = {
-  email: '✉',
-  forge: '⑂',
-  pgp: '🔑',
-  matrix: '⬢',
-  other: '→',
-};
+import type {ContactLink} from '../content/schema';
+import {ContactIcon} from './icons';
 
 const styles = stylex.create({
   section: {
@@ -62,9 +55,10 @@ const styles = stylex.create({
     outlineWidth: '2px',
     outlineOffset: '3px',
   },
-  glyph: {
-    fontSize: '0.9375rem',
-    lineHeight: 1,
+  icon: {
+    // Sizes the 1em icons and tints the monochrome ones. Brand marks carry
+    // their own colours and ignore this.
+    fontSize: '1.0625rem',
     color: 'var(--color-accent)',
   },
 });
@@ -93,8 +87,8 @@ export function Contact({links}: ContactProps) {
                 : {})}
               {...stylex.props(styles.link)}
             >
-              <span aria-hidden="true" data-kind={link.kind} {...stylex.props(styles.glyph)}>
-                {GLYPHS[link.kind]}
+              <span {...stylex.props(styles.icon)}>
+                <ContactIcon link={link} />
               </span>
               {link.label}
             </a>

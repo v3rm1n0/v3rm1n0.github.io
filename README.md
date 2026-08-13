@@ -108,6 +108,27 @@ The site shows the exact problem rather than a blank page — for example
 `content.json: projects[2].url is not a string`. The message names the field
 path, so it tells you what to fix.
 
+## Icons
+
+Two sources, both bundled at build time. Nothing is fetched from either at
+runtime.
+
+| Icons | Source | Licence |
+| --- | --- | --- |
+| Codeberg, GitHub, Matrix | [dashboardicons.com](https://dashboardicons.com) (`homarr-labs/dashboard-icons`) | Apache-2.0 |
+| mail, key, external-link | Lucide, via [opensvg.dev](https://opensvg.dev) | ISC |
+
+Brand marks live in `src/icons/` as SVG files and keep their own colours — a
+logo that isn't its own colour stops being recognisable. Vite inlines them as
+`data:` URIs, so they cost no extra request. The generic marks are inlined as
+JSX in `src/components/icons.tsx` and inherit `currentColor`, so they follow the
+accent and the light/dark toggle.
+
+To change which icon a contact link gets, see `iconFor()` in
+`src/components/icons.tsx`. `kind` selects the family; for `forge` links the
+hostname decides between Codeberg and GitHub, and an unrecognised forge falls
+back to the generic link mark rather than guessing.
+
 ## Privacy properties
 
 These are structural, not claims — check them in a devtools network tab:
