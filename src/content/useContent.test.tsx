@@ -53,7 +53,7 @@ describe('useContent', () => {
   });
 
   it('surfaces the schema error message', async () => {
-    const bad = contentFixture() as Record<string, unknown>;
+    const bad = contentFixture() as unknown as Record<string, unknown>;
     delete bad.meta;
     mockFetchOnce(async () => new Response(JSON.stringify(bad), {status: 200}));
     const {result} = renderHook(() => useContent());

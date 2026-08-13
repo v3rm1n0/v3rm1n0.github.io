@@ -15,7 +15,7 @@ describe('parseContent', () => {
   });
 
   it('names the missing required field', () => {
-    const bad = contentFixture() as Record<string, unknown>;
+    const bad = contentFixture() as unknown as Record<string, unknown>;
     delete bad.meta;
     expect(() => parseContent(bad)).toThrow(/content\.json: meta is missing/);
   });
@@ -37,7 +37,7 @@ describe('parseContent', () => {
   });
 
   it('treats absent contributions as an empty list', () => {
-    const bad = contentFixture() as Record<string, unknown>;
+    const bad = contentFixture() as unknown as Record<string, unknown>;
     delete bad.contributions;
     expect(parseContent(bad).contributions).toEqual([]);
   });
