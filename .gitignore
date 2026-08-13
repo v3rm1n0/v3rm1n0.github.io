@@ -1,0 +1,14 @@
+node_modules/
+dist/
+coverage/
+.vite/
+
+# Local env overrides
+*.local
+.env
+.env.*
+!.env.example
+
+# AI tooling scratch — not tracked
+.superpowers/
+docs/superpowers/
