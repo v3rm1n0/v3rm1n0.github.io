@@ -2,3 +2,33 @@
 @import '@astryxdesign/core/astryx.css';
 
 @stylex;
+
+/*
+ * The three rules below are the only styling that cannot live in a StyleX
+ * `create()` call: they target `:root`/`body`, which no React component owns.
+ * Everything else is component-scoped StyleX.
+ *
+ * All colour comes from astryx theme custom properties. They are declared on
+ * `<html>` (the root `<Theme>` syncs `data-astryx-theme` there) and inherit
+ * down, so `body` picks them up even though it sits above the Theme wrapper.
+ * `<html>` also carries `data-theme`, which reset.css maps to `color-scheme` —
+ * that is what makes `light-dark()` follow the toggle rather than the OS.
+ */
+:root {
+  scroll-behavior: smooth;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  :root {
+    scroll-behavior: auto;
+  }
+}
+
+body {
+  min-height: 100vh;
+  background-color: var(--color-background-body);
+  color: var(--color-text-primary);
+  font-family: var(--font-family-body);
+  font-size: 0.9375rem;
+  line-height: 1.6;
+}

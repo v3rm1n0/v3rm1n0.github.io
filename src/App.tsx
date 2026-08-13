@@ -1,5 +1,7 @@
 import {useEffect, useState} from 'react';
+import * as stylex from '@stylexjs/stylex';
 import {Theme} from '@astryxdesign/core/theme';
+import {layout} from './tokens.stylex';
 import {useContent} from './content/useContent';
 import {loadMode, saveMode, portfolioTheme, type Mode} from './theme';
 import {Nav} from './components/Nav';
@@ -12,6 +14,23 @@ import {Contact} from './components/Contact';
 import {Footer} from './components/Footer';
 import {LoadError} from './components/LoadError';
 import {ErrorBoundary} from './components/ErrorBoundary';
+
+const styles = stylex.create({
+  main: {
+    display: 'flex',
+    flexDirection: 'column',
+    gap: layout.sectionGap,
+    maxWidth: layout.maxWidth,
+    marginInline: 'auto',
+    paddingInline: {default: layout.gutter, '@media (max-width: 640px)': '1rem'},
+    // Anchor jumps land on `main` too when the skip link is used.
+    scrollMarginTop: layout.navHeight,
+  },
+  loading: {
+    marginBlock: '4rem',
+    color: 'var(--color-text-secondary)',
+  },
+});
 
 /** All skill items, flattened across groups, capped at 6 for the hero chip row. */
 function heroChips(groups: {items: string[]}[]): string[] {
@@ -42,8 +61,12 @@ export function App() {
     <Theme theme={portfolioTheme} mode={mode}>
       <ErrorBoundary>
         <Nav name={name} mode={mode} onModeChange={changeMode} />
-        <main id="main">
-          {state.status === 'loading' && <p aria-live="polite">Loading…</p>}
+        <main id="main" {...stylex.props(styles.main)}>
+          {state.status === 'loading' && (
+            <p aria-live="polite" {...stylex.props(styles.loading)}>
+              Loading…
+            </p>
+          )}
           {state.status === 'error' && <LoadError message={state.message} />}
           {state.status === 'ready' && (
             <>
