@@ -13,7 +13,7 @@ import {Footer} from './components/Footer';
 import {LoadError} from './components/LoadError';
 import {ErrorBoundary} from './components/ErrorBoundary';
 
-/** First item of each skill group, used as the hero chip row. */
+/** All skill items, flattened across groups, capped at 6 for the hero chip row. */
 function heroChips(groups: {items: string[]}[]): string[] {
   return groups.flatMap((group) => group.items).slice(0, 6);
 }
