@@ -8,27 +8,10 @@ const styles = stylex.create({
     scrollMarginTop: layout.navHeight,
     paddingBlockStart: {default: '4.5rem', '@media (max-width: 640px)': '2.75rem'},
     paddingBlockEnd: {default: '0.5rem', '@media (max-width: 640px)': '0.5rem'},
-    // Cancel `main`'s gutter and re-apply it as padding, so the dot grid runs
-    // the full width of the container instead of stopping at the text column.
-    marginInline: {
-      default: `calc(-1 * ${layout.gutter})`,
-      '@media (max-width: 640px)': '-1rem',
-    },
-    paddingInline: {default: layout.gutter, '@media (max-width: 640px)': '1rem'},
-    // The dot grid, on the hero only. Two background layers rather than a
-    // mask: the first (painted on top) is a wash of the page colour that
-    // fades the dots out towards the bottom, the second is the grid itself.
-    // A `mask` would fade the hero text along with the dots, and moving the
-    // grid to a `z-index: -1` pseudo-element hides it behind `body`'s own
-    // background — `<html>` carries a background, so body's does not
-    // propagate to the canvas and paints above negative-z-index content.
-    //
-    // The dot colour is derived from the text colour, so the grid inverts
-    // with the mode: light dots on the dark page, dark dots on the light one.
-    backgroundImage:
-      'linear-gradient(to bottom, transparent 0%, transparent 35%, var(--color-background-body) 95%), radial-gradient(circle at 1px 1px, color-mix(in srgb, var(--color-text-primary) 26%, transparent) 1px, transparent 0)',
-    backgroundSize: '100% 100%, 22px 22px',
-    backgroundRepeat: 'no-repeat, repeat',
+    // The dot grid is no longer painted here. It spans the whole document as
+    // `body::before` (see src/styles.css) and fades out over the page's full
+    // height, so the hero needs no background of its own and no longer has to
+    // cancel `main`'s gutter to make the grid reach the container edges.
   },
   location: {
     margin: 0,

@@ -4,7 +4,7 @@
 @stylex;
 
 /*
- * The three rules below are the only styling that cannot live in a StyleX
+ * The rules below are the only styling that cannot live in a StyleX
  * `create()` call: they target `:root`/`body`, which no React component owns.
  * Everything else is component-scoped StyleX.
  *
@@ -25,10 +25,60 @@
 }
 
 body {
+  position: relative;
+  /*
+   * Creates a stacking context so the `::before` dot layer below can sit at
+   * `z-index: -1` — above body's own background, but behind all content.
+   * Without it, a negative z-index child paints *below* body's background and
+   * disappears, because `<html>` carries a background of its own (set by the
+   * pre-hydration script in index.html) and therefore body's does not
+   * propagate to the canvas.
+   */
+  isolation: isolate;
   min-height: 100vh;
   background-color: var(--color-background-body);
   color: var(--color-text-primary);
   font-family: var(--font-family-body);
   font-size: 0.9375rem;
   line-height: 1.6;
+}
+
+/*
+ * The dot grid. Spans the whole document and fades out towards the bottom.
+ *
+ * The fade is a `mask-image` rather than a wash of the page colour painted on
+ * top: the layer sits behind content, so masking it cannot dim the text the
+ * way an overlay would. Both the grid and the mask are sized to body's box,
+ * so the falloff is measured over the full document height — the dots are at
+ * full strength at the top of the page and gone by the bottom, however tall
+ * the page grows.
+ *
+ * The dot colour derives from the text colour, so the grid inverts with the
+ * mode: light dots on the dark page, dark dots on the light one.
+ */
+body::before {
+  content: '';
+  position: absolute;
+  inset: 0;
+  z-index: -1;
+  pointer-events: none;
+  background-image: radial-gradient(
+    circle at 1px 1px,
+    color-mix(in srgb, var(--color-text-primary) 26%, transparent) 1px,
+    transparent 0
+  );
+  background-size: 22px 22px;
+  background-repeat: repeat;
+  -webkit-mask-image: linear-gradient(
+    to bottom,
+    rgb(0 0 0) 0%,
+    rgb(0 0 0 / 55%) 45%,
+    rgb(0 0 0 / 0%) 100%
+  );
+  mask-image: linear-gradient(
+    to bottom,
+    rgb(0 0 0) 0%,
+    rgb(0 0 0 / 55%) 45%,
+    rgb(0 0 0 / 0%) 100%
+  );
 }

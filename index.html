@@ -17,8 +17,10 @@
               ? 'dark'
               : 'light';
           }
+          // These must match the theme's resolved --color-background-body in
+          // each mode, or the mismatch shows on overscroll.
           document.documentElement.style.backgroundColor =
-            mode === 'dark' ? '#0d1017' : '#ffffff';
+            mode === 'dark' ? '#101018' : '#eff0fa';
           document.documentElement.dataset.bootMode = mode;
         } catch (e) {}
       })();
