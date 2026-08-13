@@ -12,3 +12,8 @@ coverage/
 # AI tooling scratch — not tracked
 .superpowers/
 docs/superpowers/
+
+# Machine-local Claude Code settings and their temp files. The shared
+# .claude/settings.json may be committed; these may not.
+.claude/settings.local.json
+.claude/*.tmp.*
