@@ -41,8 +41,13 @@ remote; Codeberg is a secondary mirror.
 The site is served at `v3rm1n.dev` behind Traefik, which reverse-proxies to
 `https://v3rm1n0.github.io` (`Host` header rewritten, `passHostHeader: false`)
 rather than pointing DNS at GitHub directly — that keeps Traefik terminating
-TLS for the domain like it does for everything else. `public/CNAME` tells
-GitHub the intended custom domain even though DNS doesn't point at GitHub.
+TLS for the domain like it does for everything else.
+
+GitHub Pages' custom-domain setting must stay **unset** for this repo. Setting
+it makes GitHub 301-redirect every request on `v3rm1n0.github.io` to the
+custom domain, which breaks the Traefik passthrough (the browser gets bounced
+right back to `v3rm1n.dev`, over `http://`, in a loop). Do not add a `CNAME`
+file to `public/` or set a custom domain in the repo's Pages settings.
 
 ## Edit content
 
