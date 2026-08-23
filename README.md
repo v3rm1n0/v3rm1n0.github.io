@@ -34,24 +34,24 @@ green, so run the build — not just the tests — before deploying.
 
 ## Deploy
 
-Copy the build into the LXC and let Caddy serve it:
+Pushing to `main` on GitHub triggers `.github/workflows/deploy.yml`, which builds
+and publishes to GitHub Pages (`v3rm1n0.github.io`). GitHub is the primary
+remote; Codeberg is a secondary mirror.
 
-```bash
-rsync -av --delete dist/ root@<container>:/var/www/portfolio/
-```
-
-`Caddyfile` in this repo is the server config. It terminates TLS, sets the
-security headers, caches hashed assets for a year, and marks `content.json`
-`no-cache`.
+The site is served at `v3rm1n.dev` behind Traefik, which reverse-proxies to
+`https://v3rm1n0.github.io` (`Host` header rewritten, `passHostHeader: false`)
+rather than pointing DNS at GitHub directly — that keeps Traefik terminating
+TLS for the domain like it does for everything else. `public/CNAME` tells
+GitHub the intended custom domain even though DNS doesn't point at GitHub.
 
 ## Edit content
 
 All site content lives in one file: `public/content.json` in this repo, which is
-copied verbatim to `dist/content.json` and served as
-`/var/www/portfolio/content.json`.
+copied verbatim to `dist/content.json` and fetched at runtime.
 
-It is fetched at runtime, so **editing it in the container needs no rebuild and
-no redeploy** — edit the file, reload the page.
+Unlike the old Caddy deploy, there's no live container to hand-edit: changes to
+`content.json` need a commit pushed to `main`, which rebuilds and republishes
+via the Actions workflow above.
 
 ### Before launch
 
