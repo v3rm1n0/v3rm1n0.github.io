@@ -1,0 +1,87 @@
+{
+  "meta": {
+    "name": "Niklas aka v3rm1n",
+    "tagline": "",
+    "location": "Germany",
+    "pageTitle": "Niklas",
+    "metaDescription": "PLACEHOLDER — one sentence for search results and link previews."
+  },
+  "about": {
+    "heading": "About",
+    "paragraphs": [
+      "I'm a 22 year old developer from Germany and I'm currently studying Cyber Security Managemnt.",
+      "In my freetime I love playing games and watching movies/shows. I'm also a huge fan of Open source, Linux! I use NixOS, btw!"
+    ]
+  },
+  "skills": [
+    {"group": "Systems", "items": ["Windows", "NixOS", "Nix", "Linux", "Self-hosting"]},
+    {"group": "Languages", "items": ["Nix", "Rust", "JavaScript", "Lua", "C#", "Java", "Bash", "PHP"]},
+    {"group": "Practice", "items": ["Packaging", "CLI tooling", "Automation", "CI/CD", "Docker", "Git"]}
+  ],
+  "projects": [
+    {
+      "id": "nix-flake-graph",
+      "name": "nix-flake-graph",
+      "tagline": "Flake structure as a diagram",
+      "description": "Renders neat SVG and PNG diagrams of a Nix flake's structure.",
+      "language": "Rust",
+      "tags": ["nix", "rust", "visualisation"],
+      "url": "https://codeberg.org/v3rm1n/nix-flake-graph",
+      "mirrorUrl": null,
+      "featured": true
+    },
+    {
+      "id": "nix-visualize-rust",
+      "name": "nix-visualize-rustBTW",
+      "tagline": "Dependency graphs, rewritten in Rust",
+      "description": "A Rust rewrite of craigmbooth/nix-visualize: a CLI that generates dependency graphs.",
+      "language": "Rust",
+      "tags": ["nix", "rust", "cli"],
+      "url": "https://codeberg.org/v3rm1n/nix-visualize-rustBTW",
+      "mirrorUrl": null,
+      "featured": true
+    },
+    {
+      "id": "dotfiles",
+      "name": "dotfiles",
+      "tagline": "The whole machine, declared",
+      "description": "My NixOS dotfiles in a dendritic flake pattern",
+      "language": "Nix",
+      "tags": ["nixos", "dotfiles"],
+      "url": "https://codeberg.org/v3rm1n/dotfiles",
+      "mirrorUrl": "https://github.com/v3rm1n0/nix-dots",
+      "featured": true
+    },
+    {
+      "id": "tessera",
+      "name": "Tessera",
+      "tagline": "Entry monitoring with QR scanning",
+      "description": "Entry monitoring with roles, QR-code generation and a mobile scanner.",
+      "language": "JavaScript",
+      "tags": ["web", "javascript"],
+      "url": "https://codeberg.org/v3rm1n/Tessera",
+      "mirrorUrl": "https://github.com/v3rm1n0/Tessera",
+      "featured": false
+    }
+  ],
+  "contributions": [
+    {
+      "project": "nixpkgs",
+      "role": "Package maintainer",
+      "detail": "Six merged pull requests. Maintains stoat-desktop — initial packaging, version bumps and the update script.",
+      "url": "https://github.com/NixOS/nixpkgs/pulls?q=is%3Apr+author%3Av3rm1n0"
+    },
+    {
+      "project": "european-alternatives",
+      "role": "Contributor",
+      "detail": "Four merged pull requests: added Signal, Briar and Session; added Codeberg and the version-control category; added HERE WeGo; rewrote the README and contribution guide.",
+      "url": "https://github.com/TheMorpheus407/european-alternatives/pulls?q=is%3Apr+author%3Av3rm1n0"
+    }
+  ],
+  "contact": [
+    {"label": "E-Mail", "href": "mailto:mail@v3rm1n.dev", "kind": "email"},
+    {"label": "Codeberg", "href": "https://codeberg.org/v3rm1n", "kind": "forge"},
+    {"label": "GitHub", "href": "https://github.com/v3rm1n0", "kind": "forge"}
+  ],
+  "legal": null
+}

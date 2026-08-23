@@ -1,7 +1,7 @@
 {
   "meta": {
-    "name": "Niklas",
-    "tagline": "PLACEHOLDER — one line on what you do and what you care about.",
+    "name": "Niklas aka v3rm1n",
+    "tagline": "",
     "location": "Germany",
     "pageTitle": "Niklas",
     "metaDescription": "PLACEHOLDER — one sentence for search results and link previews."
@@ -9,14 +9,14 @@
   "about": {
     "heading": "About",
     "paragraphs": [
-      "PLACEHOLDER — who you are and what you work on. Two or three sentences.",
-      "PLACEHOLDER — why privacy and Linux matter to you. Two or three sentences."
+      "I'm a 22 year old developer from Germany and I'm currently studying Cyber Security Managemnt.",
+      "In my freetime I love playing games and watching movies/shows. I'm also a huge fan of Open source, Linux! I use NixOS, btw!"
     ]
   },
   "skills": [
-    {"group": "Systems", "items": ["NixOS", "Nix", "Linux", "Self-hosting"]},
-    {"group": "Languages", "items": ["Rust", "JavaScript", "Lua"]},
-    {"group": "Practice", "items": ["Packaging", "CLI tooling", "Automation"]}
+    {"group": "Systems", "items": ["Windows", "NixOS", "Nix", "Linux", "Self-hosting"]},
+    {"group": "Languages", "items": ["Nix", "Rust", "JavaScript", "Lua", "C#", "Java", "Bash", "PHP"]},
+    {"group": "Practice", "items": ["Packaging", "CLI tooling", "Automation", "CI/CD", "Docker", "Git"]}
   ],
   "projects": [
     {
@@ -45,7 +45,7 @@
       "id": "dotfiles",
       "name": "dotfiles",
       "tagline": "The whole machine, declared",
-      "description": "PLACEHOLDER — a sentence on how the NixOS configuration is organised.",
+      "description": "My NixOS dotfiles in a dendritic flake pattern",
       "language": "Nix",
       "tags": ["nixos", "dotfiles"],
       "url": "https://codeberg.org/v3rm1n/dotfiles",
@@ -79,6 +79,7 @@
     }
   ],
   "contact": [
+    {"label": "E-Mail", "href": "mailto:mail@v3rm1n.dev", "kind": "email"},
     {"label": "Codeberg", "href": "https://codeberg.org/v3rm1n", "kind": "forge"},
     {"label": "GitHub", "href": "https://github.com/v3rm1n0", "kind": "forge"}
   ],
