@@ -53,6 +53,17 @@
       "featured": true
     },
     {
+      "id": "pergament",
+      "name": "Pergament",
+      "tagline": "A .jwpub reader for Linux",
+      "description": "Unofficial Linux reader for .jwpub publications, with a Tauri desktop app, a CLI and a Rust library.",
+      "language": "Rust",
+      "tags": ["rust", "tauri", "react", "cli"],
+      "url": "https://github.com/v3rm1n0/pergament",
+      "mirrorUrl": null,
+      "featured": true
+    },
+    {
       "id": "tessera",
       "name": "Tessera",
       "tagline": "Entry monitoring with QR scanning",
