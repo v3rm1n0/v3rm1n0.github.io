@@ -2,6 +2,7 @@ import {useEffect, useState} from 'react';
 import * as stylex from '@stylexjs/stylex';
 import {Theme} from '@astryxdesign/core/theme';
 import {layout} from './tokens.stylex';
+import type {Content} from './content/schema';
 import {useContent} from './content/useContent';
 import {loadMode, saveMode, portfolioTheme, type Mode} from './theme';
 import {Nav} from './components/Nav';
@@ -37,9 +38,13 @@ function heroChips(groups: {items: string[]}[]): string[] {
   return groups.flatMap((group) => group.items).slice(0, 6);
 }
 
-export function App() {
+export interface AppProps {
+  initialContent?: Content;
+}
+
+export function App({initialContent}: AppProps = {}) {
   const [mode, setMode] = useState<Mode>(loadMode);
-  const state = useContent();
+  const state = useContent('/content.json', initialContent);
 
   function changeMode(next: Mode) {
     setMode(next);

@@ -6,10 +6,29 @@ export type ContentState =
   | {status: 'ready'; content: Content}
   | {status: 'error'; message: string};
 
-export function useContent(url = '/content.json'): ContentState {
-  const [state, setState] = useState<ContentState>({status: 'loading'});
+export function useContent(url = '/content.json', initialContent?: Content): ContentState {
+  const [state, setState] = useState<ContentState>(() => {
+    if (initialContent) {
+      return {status: 'ready', content: initialContent};
+    }
+    if (typeof document !== 'undefined') {
+      const embedded = document.getElementById('content-data');
+      if (embedded?.textContent) {
+        try {
+          return {status: 'ready', content: parseContent(JSON.parse(embedded.textContent))};
+        } catch {
+          // Fall through to network fetch
+        }
+      }
+    }
+    return {status: 'loading'};
+  });
 
   useEffect(() => {
+    if (state.status === 'ready' && url === '/content.json') {
+      return;
+    }
+
     const controller = new AbortController();
     let active = true;
 
