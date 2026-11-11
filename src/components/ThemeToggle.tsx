@@ -37,6 +37,7 @@ export interface ThemeToggleProps {
 export function ThemeToggle({mode, onChange}: ThemeToggleProps) {
   return (
     <IconButton
+      data-theme-toggle=""
       label={LABELS[mode]}
       variant="ghost"
       size="sm"
