@@ -1,5 +1,6 @@
 @import '@astryxdesign/core/reset.css';
 @import '@astryxdesign/core/astryx.css';
+@import './v3rm1n.css';
 
 @stylex;
 
@@ -16,6 +17,7 @@
  */
 :root {
   scroll-behavior: smooth;
+  background-color: var(--color-background-body);
 }
 
 @media (prefers-reduced-motion: reduce) {
